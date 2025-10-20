@@ -1,1 +1,1 @@
-int c,i,k,d=10;int main(){while((c=getchar())!=d){for(i=c;i;i/=d){for(k=i%d;k--;)putchar(c);}putchar(d);}}
+i,k,d=10;main(c){while((c=getchar())!=d){for(i=c;i;i/=d){for(k=i%d;k--;)putchar(c);}putchar(d);}}
