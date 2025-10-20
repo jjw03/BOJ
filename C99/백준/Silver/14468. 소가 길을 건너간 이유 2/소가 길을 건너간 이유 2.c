@@ -1,1 +1,1 @@
-int a;char i,j,k,c[26][27],s[53];int main(){scanf("%s",s);for(;i<51;i++){j=s[i]-65;if(!c[j][0]++){for(k=i;++k<52&&s[k]!=s[i];)c[j][s[k]-64]++;for(k=1;k<=j;)a+=c[j][k++]%2;}}printf("%d",a);}
+a;char i,k,c[26][27],s[53];main(j){scanf("%s",s);for(;i<51;i++){j=s[i]-65;if(!c[j][0]++){for(k=i;++k<52&&s[k]!=s[i];)c[j][s[k]-64]++;for(k=1;k<=j;)a+=c[j][k++]%2;}}printf("%d",a);}
