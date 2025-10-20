@@ -1,1 +1,1 @@
-int n,d,a,m;int main(){for(scanf("%d",&n);++d*d<=n;)m=n%d==0,a+=m+(n!=d*d)*m;printf("%d",a);}
+d,a,m;main(n){for(scanf("%d",&n);++d*d<=n;)m=n%d==0,a+=m+(n!=d*d)*m;printf("%d",a);}
