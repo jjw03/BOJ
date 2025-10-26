@@ -1,0 +1,1 @@
+main(a,b){while(scanf("%d%d",&a,&b)*a)puts(a%b?b%a?"neither":"factor":"multiple");}
