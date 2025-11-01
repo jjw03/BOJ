@@ -1,0 +1,1 @@
+c;main(n,a,b,f){for(scanf("%d%d",&a,&f);n++<a;c+=f-b>0)scanf("%d",&b);puts(c-a+1?c?"?":"ez":"hard");}
