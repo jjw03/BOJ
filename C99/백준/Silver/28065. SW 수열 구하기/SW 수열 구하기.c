@@ -1,0 +1,1 @@
+n;main(a,b){for(scanf("%d",&b);n<b;a=n++%2+b-a+1)printf("%d ",a);}
