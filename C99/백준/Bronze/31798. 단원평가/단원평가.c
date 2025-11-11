@@ -1,0 +1,1 @@
+a[3],n,x;main(p){for(;n-3;p=a[n]?p:n,n++)scanf("%d",a+n);if(p-2)x=a[2]*a[2]-a[p^1];else while(++x*x<*a+a[1]);printf("%d",x);}
