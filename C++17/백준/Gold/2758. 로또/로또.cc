@@ -3,6 +3,8 @@ using namespace std;
 
 /*
 * top-down
+* 메모이제이션의 값 초기화 주의
+* https://djm03178.tistory.com/38
 */
 
 vector<vector<long long>> memo;
