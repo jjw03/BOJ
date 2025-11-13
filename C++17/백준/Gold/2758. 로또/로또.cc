@@ -1,9 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+* top-down
+*/
+
+vector<vector<long long>> memo;
+
+//cnt번째 숫자로 num을 고르는 경우의 수
+long long dp(int cnt, int num) {
+    if (memo[cnt][num] != -1) return memo[cnt][num];
+    if (cnt == 1) return memo[cnt][num] = 1;
+
+    long long ret = 0;
+    for (int n = num / 2; n >= 1; n--)
+        ret += dp(cnt - 1, n);
+
+    return memo[cnt][num] = ret;
+}
+
 int main() {
     cin.tie(NULL);
     ios_base::sync_with_stdio(0);
+
+    memo.resize(10 + 1, vector<long long>(2000 + 1, -1));
 
     int tt;
     cin >> tt;
@@ -11,21 +31,9 @@ int main() {
         int n, m;
         cin >> n >> m;
 
-        //dp i k : i번째 숫자를 택할때 k를 고르는 경우의 수
-        vector<vector<long long>> dp(n + 1, vector<long long>(m + 1));
-        dp[0][0] = 1;
-
-        for (int cnt = 1; cnt <= n; cnt++) {
-            for (int num = 1; num <= m; num++) {
-                for (int i = num / 2; i >= 0; i--) {
-                    dp[cnt][num] += dp[cnt - 1][i];
-                }
-            }
-        }
-
         long long ans = 0;
         for (int i = 1; i <= m; i++)
-            ans += dp[n][i];
+            ans += dp(n, i);
         cout << ans << '\n';
     }
 
