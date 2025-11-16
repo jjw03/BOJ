@@ -56,8 +56,8 @@ pair<int, int> find_nearest(const pair<int, int>& taxi) {
     int min_dist = INT_MAX;
     pair<int, int> ret = { -1, -1 };
 
-    vector<vector<pair<int, int>>> dist(N, vector<pair<int, int>>(N, { INT_MAX, INT_MAX }));
-    dist[taxi.first][taxi.second] = { 0, fuel };
+    vector<vector<int>> dist(N, vector<int>(N, INT_MAX));
+    dist[taxi.first][taxi.second] = 0;
 
     queue<dist_fuel> to_visit;
     to_visit.push({ taxi, fuel });
@@ -66,8 +66,8 @@ pair<int, int> find_nearest(const pair<int, int>& taxi) {
         auto [curx, cury, curf] = to_visit.front();
         to_visit.pop();
 
-        if (g[curx][cury] > 0 && min_dist >= dist[curx][cury].first) {
-            if (min_dist == dist[curx][cury].first) {
+        if (g[curx][cury] > 0 && min_dist >= dist[curx][cury]) {
+            if (min_dist == dist[curx][cury]) {
                 if (curx != ret.first) {
                     ret = (ret.first < curx ? ret : make_pair(curx, cury));
                 }
@@ -76,7 +76,7 @@ pair<int, int> find_nearest(const pair<int, int>& taxi) {
                 }
             }
             else {
-                min_dist = dist[curx][cury].first;
+                min_dist = dist[curx][cury];
                 ret = { curx, cury };
             }
         }
@@ -88,9 +88,9 @@ pair<int, int> find_nearest(const pair<int, int>& taxi) {
             if (nx < 0 || N <= nx || ny < 0 || N <= ny) continue;
             if (g[nx][ny] == -1) continue;
 
-            int ndist = dist[curx][cury].first + 1;
-            if (dist[nx][ny].first > ndist) {
-                dist[nx][ny] = { ndist, curf - 1 };
+            int ndist = dist[curx][cury] + 1;
+            if (dist[nx][ny] > ndist) {
+                dist[nx][ny] = ndist;
                 to_visit.push({ {nx, ny}, curf - 1 });
             }
         }
@@ -99,7 +99,7 @@ pair<int, int> find_nearest(const pair<int, int>& taxi) {
     if (ret.first == -1)
         fuel = -1;
     else
-        fuel = dist[ret.first][ret.second].second;
+        fuel -= dist[ret.first][ret.second];
 
     return ret;
 }
