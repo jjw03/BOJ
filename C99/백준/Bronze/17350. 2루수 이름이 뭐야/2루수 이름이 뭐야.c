@@ -1,0 +1,1 @@
+c[199];main(n,a){for(scanf("%d",&a);a--;n&=strcmp(c,"anj")!=0)scanf("%s",c);printf("%s%c","뭐야",n?63:59);}
