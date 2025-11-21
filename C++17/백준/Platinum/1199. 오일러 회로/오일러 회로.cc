@@ -2,15 +2,7 @@
 using namespace std;
 
 int N;
-
-vector<int> degree;
-vector<map<int, int>> graph;
-
-bool is_circuit() {
-    bool ret = true;
-    for (const int i : degree) ret &= (i % 2 == 0);
-    return ret;
-}
+vector<unordered_map<int, int>> graph;
 
 void euler_DFS(int cur) {
     while (!graph[cur].empty()) {
@@ -34,24 +26,25 @@ int main() {
     ios_base::sync_with_stdio(0);
 
     cin >> N;
-
-    degree.resize(N);
     graph.resize(N);
 
+    bool is_circuit = true;
     for (int r = 0; r < N; r++) {
+        int degree = 0;
         for (int c = 0; c < N; c++) {
             int in; 
             cin >> in;
 
-            degree[r] += in;
+            degree += in;
 
             if (r == c || in == 0) continue;
 
             graph[r].insert({ c, in });
         }
+        is_circuit &= (degree % 2 == 0);
     }
 
-    if (!is_circuit()) {
+    if (!is_circuit) {
         cout << -1;
         return 0;
     }
