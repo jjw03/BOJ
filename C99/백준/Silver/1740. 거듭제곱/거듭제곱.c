@@ -1,0 +1,1 @@
+long x,a,n;main(){for(a=scanf("%ld",&n);n;n/=2,a*=3)x+=n%2*a;printf("%ld",x);}
