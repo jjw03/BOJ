@@ -5,6 +5,10 @@ typedef long long ll;
 typedef unsigned long long ull;
 using namespace std;
 
+/*
+ * Q가 최대 20이므로 각 쿼리에 대해서 그래프 탐색을 반복해도 TLE에서 안전함
+ */
+
 int N, M;
 vector<int> level;
 vector<vector<int>> graph;
@@ -43,6 +47,10 @@ int BFS(const int a, const int b){
 
         for(int next : graph[cur]){
             if(visited[next] != 0){
+                //BFS 도중 다르게 마킹된 노드를 만났을 경우 다음의 두가지 경우 뿐임
+                //1. 다음 노드가 현재 a 또는 b
+                //2. 다음 노드가 a와 b의 자식 노드
+                //1의 경우 나이 순서를 알 수 있지만 2의 경우 불가능
                 if(visited[next] != visited[cur] && (next == a || next == b))
                     ret = visited[cur];
                 continue;
