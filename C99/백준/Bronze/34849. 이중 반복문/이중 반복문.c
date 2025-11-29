@@ -1,0 +1,1 @@
+main(n){scanf("%d",&n);puts(n>1e4?"Time limit exceeded":"Accepted");}
