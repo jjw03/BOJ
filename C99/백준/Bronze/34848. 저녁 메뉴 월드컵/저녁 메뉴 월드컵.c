@@ -1,0 +1,1 @@
+main(c,n,a){for(scanf("%d",&n);n--;printf("%d\n",c))for(c=0,scanf("%d",&a);a^1;c+=a%2,a=a/2+a%2);}
