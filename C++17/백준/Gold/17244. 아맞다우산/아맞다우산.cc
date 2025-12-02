@@ -7,7 +7,7 @@ using namespace std;
 
 /*
 * 각 물건들, 사람 사이의 최단거리를 구하고 그래프로 나타낸 다음
-* 사람 - 출구의 최단거리를 플로이드-워셜로 구하기
+* 사람 -> 물건 -> ... -> 출구의 최단거리를 완전탐색으로 구하기
 */
 
 int N, M;
@@ -89,13 +89,6 @@ void BFS(int s_idx) {
         graph[s_idx][i] = dist[x][y];
     }
 }
-
-struct cmp {
-    bool operator()(const pair<int, int>& a, const pair<int, int>& b) const {
-        if (a.second != b.second) return a.second > b.second;
-        return a.first > b.first;
-    }
-};
 
 // 물건을 모두 챙기고 E로 가는 최단거리(완전 탐색)
 int shortest_path(vector<int> path, int mask, int cur) {
