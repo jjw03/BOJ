@@ -1,0 +1,1 @@
+l=15e4;main(n){if(n<=l){main(2*n);printf("%d ",l-n+1);main(2*n+1);}}
