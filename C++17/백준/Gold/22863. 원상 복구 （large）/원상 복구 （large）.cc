@@ -10,12 +10,12 @@ using namespace std;
 * 결과 배열을 수열 D에 따라 다시 K번 배치하면 됨
 */
 
-const int bit_sz = 64;
+const int bit_sz = 51;
 int N;
 ll K;
 
 int original[1'000'000];
-int sparse_table[64][1'000'000];
+int sparse_table[bit_sz][1'000'000];
 
 void init() {
     cin >> N >> K;
