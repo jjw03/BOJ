@@ -6,54 +6,41 @@ typedef unsigned long long ull;
 using namespace std;
 
 /*
-* 맛 수치, 영양 수치 2가지 항목이 존재한다
-* 이 두 항목을 하나의 수직선에 표현해보자
-* 맛 수치는 음의 방향으로, 영양 수치는 양의 방향으로
-* 이렇게 표현하면 다음의 정보를 알 수 있다
-* 어떤 학생이 가지는 취향 (a, b)를 충족시키려면
-* a + b 이상의 길이를 가지는 범위 안에 그 학생이 존재해야한다
+* 어떤 학생의 수치를 만족시키려면 a <= k_a, b <= k_b인 k_a, k_b를 택해야 한다
+* (a + b > M인 학생은 어떠한 방법으로도 만족시킬 수 없으므로 제외한다)
+* 주어진 M에 대하여 최대 횟수의 주문을 사용하면 항상 a + b = M이고, k_a + k_b = M을 만족한다
+* a <= k_a인 k_a를 택할 때 해당 학생을 만족시킬 또다른 조건은 M - k_a >= b 이다
+* 두 조건을 정리하면
+* 1. a <= k_a
+* 2. k_a <= M - b
 * 
-* 다시 말해서, 초기 수치 0을 중앙 기준점으로 잡고
-* 해당 기준점에서 충족시킬 수 있는 학생들의 집합은
-* 0을 기준으로 음의 방향 길이 a, 양의 방향 길이 b의 range 안에 있는 학생들과 같다
+* 일반화 하면 a <= k <= M - b이고,
+* 해당 구간에 속하는 모든 자연수 k에 대하여 해당 학생을 만족시킬 수 있다
 * 
-* 어떤 range 안에 있는 학생들의 수는 누적합으로 계산한다
+* 따라서 위의 구간을 이용하여 누적합을 구하고, 그 중 최대값이 답이 된다
 */
 
 int N, M;
-vector<int> in_point, out_point;
+vector<int> prefix;
 
 void init() {
     cin >> N >> M;
-    in_point.resize(2 * M + 1, 0);
-    out_point.resize(2 * M + 1, 0);
-
+    prefix.resize(M + 2, 0);
     while (N--) {
         int a, b;
         cin >> a >> b;
         if (a + b > M) continue;
-        ++in_point[M + b];
-        --out_point[M - a + 1];
+        ++prefix[a];
+        --prefix[M - b + 1];
     }
 }
 
 void solve() {
-    int ans = 0, t = 0;
-    int a = 0, b = 0;
-
-    // init
-    while (b < M) {
-        t += in_point[b];
-        ++b;
+    int ans = prefix[0];
+    for (int score = 1; score <= M; score++) {
+        prefix[score] += prefix[score - 1];
+        ans = max(ans, prefix[score]);
     }
-
-    // calculate
-    while (b <= 2 * M) {
-        t = t + in_point[b] + out_point[a];
-        ans = max(ans, t);
-        a++, b++;
-    }
-
     cout << ans;
 }
 
