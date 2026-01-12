@@ -1,0 +1,1 @@
+main(){puts(getchar()<54?"Oh My God!":"Success!");}
