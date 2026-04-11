@@ -1,0 +1,1 @@
+main(t,n,f){for(scanf("%d%d",&t,&n);n--;t-=f)scanf("%d",&f);puts(t<1?"Padaeng_i Happy":"Padaeng_i Cry");}
